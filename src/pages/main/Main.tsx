@@ -1,21 +1,16 @@
 import React from 'react';
 import HeroCard from '../../components/HeroCard';
 import Card from '../../components/Card';
+import { heroProps } from '../../consts';
 
-type HeroCardProps = {
-  title:string;
-  year:number;
-  genre:string;
-}
-
-
-export default function Main({genre,title,year}:HeroCardProps): JSX.Element {
+export default function Main(): JSX.Element {
+  const { title, year, genre } = heroProps;
   return (<React.Fragment><meta charSet="UTF-8" />
     <title>WTW</title>
     <meta name="robots" content="noindex, nofollow" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="css/main.min.css" />
-    <HeroCard genre={genre} title={title} year={year}/>
+    <HeroCard title={title} year={year} genre={genre}/>
     <div className="page-content">
       <section className="catalog">
         <h2 className="catalog__title visually-hidden">Catalog</h2>

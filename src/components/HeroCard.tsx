@@ -1,12 +1,9 @@
-
-type HeroCardProps = {
-  title:string;
-  year:number;
-  genre:string;
-}
+import { HeroCardProps } from '../consts';
 
 
-export default function HeroCard({genre,title,year}:HeroCardProps): JSX.Element{
+export default function HeroCard(props: HeroCardProps): JSX.Element{
+  const {title, year, genre} = props;
+
   return (<section className="film-card">
     <div className="film-card__bg">
       <img
