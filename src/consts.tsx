@@ -12,15 +12,3 @@ export enum AuthorizationStatus {
   NoAuth = 'NO_AUTH',
   Unknown = 'UNKNOWN',
 }
-
-export type HeroCardProps = {
-  title:string;
-  year:number;
-  genre:string;
-}
-
-export const heroProps: HeroCardProps = {
-  title: 'The Grand Budapest Hotel',
-  genre: 'Drama',
-  year: 2014,
-};
