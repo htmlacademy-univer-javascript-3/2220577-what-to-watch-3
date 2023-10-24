@@ -1,9 +1,10 @@
 import HeroCard from '../../components/HeroCard';
-import Card from '../../components/Card';
-import { heroCard, films } from '../../data';
+import { MainProps } from '../../types';
+import CardList from '../../components/CardList';
+import Footer from '../../components/Footer';
 
-export default function Main(): JSX.Element {
-  const { title, year, genre } = heroCard;
+export default function Main({heroFilmCard, filmCards}: MainProps) {
+  const { name, released, genre } = heroFilmCard;
   return (
     <>
       <meta charSet="UTF-8" />
@@ -11,83 +12,70 @@ export default function Main(): JSX.Element {
       <meta name="robots" content="noindex, nofollow" />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <link rel="stylesheet" href="css/main.min.css" />
-      <HeroCard title={title} year={year} genre={genre}/>
+      <HeroCard name={name} released={released} genre={genre} id={0} posterImage={''} backgroundImage={''} videoLink={''} isFavorite={false} previewImage={''}/>
       <div className="page-content">
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
           <ul className="catalog__genres-list">
             <li className="catalog__genres-item catalog__genres-item--active">
               <a href="#" className="catalog__genres-link">
-              All genres
+        All genres
               </a>
             </li>
             <li className="catalog__genres-item">
               <a href="#" className="catalog__genres-link">
-              Comedies
+        Comedies
               </a>
             </li>
             <li className="catalog__genres-item">
               <a href="#" className="catalog__genres-link">
-              Crime
+        Crime
               </a>
             </li>
             <li className="catalog__genres-item">
               <a href="#" className="catalog__genres-link">
-              Documentary
+        Documentary
               </a>
             </li>
             <li className="catalog__genres-item">
               <a href="#" className="catalog__genres-link">
-              Dramas
+        Dramas
               </a>
             </li>
             <li className="catalog__genres-item">
               <a href="#" className="catalog__genres-link">
-              Horror
+        Horror
               </a>
             </li>
             <li className="catalog__genres-item">
               <a href="#" className="catalog__genres-link">
-              Kids &amp; Family
+        Kids &amp; Family
               </a>
             </li>
             <li className="catalog__genres-item">
               <a href="#" className="catalog__genres-link">
-              Romance
+        Romance
               </a>
             </li>
             <li className="catalog__genres-item">
               <a href="#" className="catalog__genres-link">
-              Sci-Fi
+        Sci-Fi
               </a>
             </li>
             <li className="catalog__genres-item">
               <a href="#" className="catalog__genres-link">
-              Thrillers
+        Thrillers
               </a>
             </li>
           </ul>
-          <div className="catalog__films-list">
-            {films.map((film) => <Card src={film.src} title={film.title} key={film.src} />)}
-          </div>
+          <CardList filmCards={filmCards}/>
           <div className="catalog__more">
             <button className="catalog__button" type="button">
-            Show more
+      Show more
             </button>
           </div>
         </section>
-        <footer className="page-footer">
-          <div className="logo">
-            <a className="logo__link logo__link--light">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </a>
-          </div>
-          <div className="copyright">
-            <p>© 2019 What to watch Ltd.</p>
-          </div>
-        </footer>
+        <Footer/>
       </div>
     </>);
 }

@@ -1,4 +1,4 @@
-export default function MoviePageDetails(): JSX.Element{
+export default function MoviePageDetails() {
   return (
     <>
       <section className="film-card film-card--full">

@@ -2,7 +2,7 @@ import Main from '../pages/main/Main';
 import {
   BrowserRouter,
   Routes,
-  Route
+  Route,
 } from 'react-router-dom';
 import SignIn from '../pages/signIn/SignIn';
 import MyList from '../pages/myList/MyList';
@@ -12,24 +12,39 @@ import Player from '../pages/player/Player';
 import NotFound from './NotFound';
 import {AppRoute, AuthorizationStatus} from '../consts';
 import PrivateRoute from './PrivateRoute';
+import { AppProps } from '../types';
 
-
-export default function App() {
+export default function App({heroFilmCard, filmCards}: AppProps) {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path={AppRoute.Root} element={<Main />}/>
+        <Route path={AppRoute.Root} element={
+          <Main
+            heroFilmCard={heroFilmCard}
+            filmCards={filmCards.slice(0,8)}
+          />
+        }
+        />
         <Route path={AppRoute.Login} element={<SignIn />} />
-        <Route path={AppRoute.Films} element={<MoviePage />} />
-
-        {/* запривачено, установлено что мы не залогинены (можно изменить на Auth)*/}
+        <Route path={AppRoute.Films} element={<MoviePage filmCards = {filmCards.slice(0,4)} />} />
         <Route path={AppRoute.MyListEnum} element={
-          <PrivateRoute authorizationStatus={AuthorizationStatus.NoAuth}>
-            <MyList />
+          <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
+            <MyList
+              filmCards = {filmCards}
+            />
           </PrivateRoute>
         }
         />
-        <Route path={AppRoute.AddReviewEnum} element={<AddReview />}/>
+        <Route path={AppRoute.AddReviewEnum} element={
+          <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
+            <AddReview
+              name = {heroFilmCard.name}
+              previewImage={heroFilmCard.previewImage}
+              posterImage={heroFilmCard.posterImage}
+            />
+          </PrivateRoute>
+        }
+        />
         <Route path={AppRoute.PlayerEnum} element={<Player />}/>
         <Route path="*" element={<NotFound />}/>
       </Routes>

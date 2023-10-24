@@ -1,4 +1,4 @@
-export default function MoviePageInList(): JSX.Element{
+export default function MoviePageInList() {
   return (
     <>
       <section className="film-card film-card--full">
