@@ -1,4 +1,4 @@
-export default function SignInMessage(): JSX.Element{
+export default function SignInMessage() {
   return (
     <div className="user-page">
       <header className="page-header user-page__head">

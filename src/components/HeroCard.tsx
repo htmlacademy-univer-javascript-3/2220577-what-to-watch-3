@@ -1,11 +1,8 @@
-type HeroCardProps = {
-  title: string;
-  genre: string;
-  year: number;
-}
+import { HeroProps } from '../types';
+import Logo from './Logo';
+import Profile from './Profile';
 
-export default function HeroCard(props: HeroCardProps): JSX.Element{
-  const {title, year, genre} = props;
+export default function HeroCard({name, released, genre}: HeroProps) {
 
   return (
     <section className="film-card">
@@ -17,23 +14,8 @@ export default function HeroCard(props: HeroCardProps): JSX.Element{
       </div>
       <h1 className="visually-hidden">WTW</h1>
       <header className="page-header film-card__head">
-        <div className="logo">
-          <a className="logo__link">
-            <span className="logo__letter logo__letter--1">W</span>
-            <span className="logo__letter logo__letter--2">T</span>
-            <span className="logo__letter logo__letter--3">W</span>
-          </a>
-        </div>
-        <ul className="user-block">
-          <li className="user-block__item">
-            <div className="user-block__avatar">
-              <img src="img/avatar.jpg" alt="User avatar" width={63} height={63} />
-            </div>
-          </li>
-          <li className="user-block__item">
-            <a className="user-block__link">Sign out</a>
-          </li>
-        </ul>
+        <Logo/>
+        <Profile/>
       </header>
       <div className="film-card__wrap">
         <div className="film-card__info">
@@ -46,10 +28,10 @@ export default function HeroCard(props: HeroCardProps): JSX.Element{
             />
           </div>
           <div className="film-card__desc">
-            <h2 className="film-card__title">{title}</h2>
+            <h2 className="film-card__title">{name}</h2>
             <p className="film-card__meta">
               <span className="film-card__genre">{genre}</span>
-              <span className="film-card__year">{year}</span>
+              <span className="film-card__year">{released}</span>
             </p>
             <div className="film-card__buttons">
               <button className="btn btn--play film-card__button" type="button">

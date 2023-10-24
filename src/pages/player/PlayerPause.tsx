@@ -1,4 +1,4 @@
-export default function PlayerPause(): JSX.Element{
+export default function PlayerPause() {
   return (
     <div className="player">
       <video src="#" className="player__video" poster="img/player-poster.jpg" />

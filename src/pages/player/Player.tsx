@@ -1,4 +1,4 @@
-export default function Player(): JSX.Element{
+export default function Player() {
   return (
     <div className="player">
       <video src="#" className="player__video" poster="img/player-poster.jpg" />

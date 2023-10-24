@@ -1,4 +1,4 @@
-export default function HeadGuest(): JSX.Element{
+export default function HeadGuest() {
   return (
     <section className="film-card">
       <div className="film-card__bg">
