@@ -14,7 +14,7 @@ import {AppRoute, AuthorizationStatus} from '../consts';
 import PrivateRoute from './PrivateRoute';
 import { AppProps } from '../types';
 
-export default function App({heroFilmCard, filmCards, smallFilmCards}: AppProps) {
+export default function App({heroFilmCard, filmCards, smallFilmCards, reviews}: AppProps) {
   return (
     <BrowserRouter>
       <Routes>
@@ -30,6 +30,7 @@ export default function App({heroFilmCard, filmCards, smallFilmCards}: AppProps)
           <MoviePage
             smallFilmCards = {smallFilmCards}
             filmCards = {filmCards}
+            reviews = {reviews}
           />
         }
         />

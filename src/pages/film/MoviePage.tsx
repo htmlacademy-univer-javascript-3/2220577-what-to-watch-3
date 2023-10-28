@@ -9,7 +9,7 @@ import Overview from '../../components/Overview';
 import Details from '../../components/Details';
 import Reviews from '../../components/Reviews';
 
-export default function MoviePage({smallFilmCards, filmCards}: MoviePageProps) {
+export default function MoviePage({smallFilmCards, filmCards, reviews}: MoviePageProps) {
   const params = useParams();
   const [toggleState, setToggleState] = useState(1);
   const id = params.id ? parseInt(params.id, 10) : 1;
@@ -127,7 +127,7 @@ export default function MoviePage({smallFilmCards, filmCards}: MoviePageProps) {
                 genre={film?.genre}
                 released={film?.released}
               />
-              <Reviews active={toggleState === 3}/>
+              <Reviews active={toggleState === 3} reviews={reviews}/>
             </div>
           </div>
         </div>
