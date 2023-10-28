@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './components/App';
-import { heroCard, films } from './mocks/films';
+import { heroCard, films, smallFilms } from './mocks/films';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -12,6 +12,7 @@ root.render(
     <App
       heroFilmCard = {heroCard}
       filmCards = {films}
+      smallFilmCards = {smallFilms}
     />
   </React.StrictMode>
 );
