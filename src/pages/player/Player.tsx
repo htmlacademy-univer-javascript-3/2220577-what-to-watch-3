@@ -1,8 +1,15 @@
-export default function Player() {
+import { useNavigate, useParams } from 'react-router-dom';
+import { PlayerProps } from '../../types';
+
+export default function Player({filmCards}: PlayerProps) {
+  const params = useParams();
+  const navigate = useNavigate();
+  const id = params.id ? parseInt(params.id, 10) : 1;
+  const film = filmCards.find((x) => x.id === id);
   return (
     <div className="player">
       <video src="#" className="player__video" poster="img/player-poster.jpg" />
-      <button type="button" className="player__exit">
+      <button onClick={() => navigate(-1)} type="button" className="player__exit">
         Exit
       </button>
       <div className="player__controls">
@@ -13,7 +20,7 @@ export default function Player() {
               Toggler
             </div>
           </div>
-          <div className="player__time-value">1:30:29</div>
+          <div className="player__time-value">{film?.runTime}</div>
         </div>
         <div className="player__controls-row">
           <button type="button" className="player__play">

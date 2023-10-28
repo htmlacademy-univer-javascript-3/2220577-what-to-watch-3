@@ -1,18 +1,21 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Logo from '../../components/Logo';
 import Profile from '../../components/Profile';
 import { AddReviewProps } from '../../types';
 import FormReview from '../../components/FormReview';
 
-export default function AddReview({name, previewImage, posterImage}:AddReviewProps) {
+export default function AddReview({filmCards}:AddReviewProps) {
   const navigate = useNavigate();
+  const params = useParams();
+  const id = params.id ? parseInt(params.id, 10) : 1;
+  const film = filmCards.find((x) => x.id === id);
   return (
     <section className="film-card film-card--full">
       <div className="film-card__header">
         <div className="film-card__bg">
           <img
-            src={previewImage}
-            alt={name}
+            src={film?.backgroundImage}
+            alt={film?.name}
           />
         </div>
         <h1 className="visually-hidden">WTW</h1>
@@ -22,7 +25,7 @@ export default function AddReview({name, previewImage, posterImage}:AddReviewPro
             <ul className="breadcrumbs__list">
               <li className="breadcrumbs__item">
                 <a onClick={() => navigate(-1)} className="breadcrumbs__link">
-                  {name}
+                  {film?.name}
                 </a>
               </li>
               <li className="breadcrumbs__item">
@@ -34,8 +37,8 @@ export default function AddReview({name, previewImage, posterImage}:AddReviewPro
         </header>
         <div className="film-card__poster film-card__poster--small">
           <img
-            src={posterImage}
-            alt={name}
+            src={film?.posterImage}
+            alt={film?.name}
             width={218}
             height={327}
           />

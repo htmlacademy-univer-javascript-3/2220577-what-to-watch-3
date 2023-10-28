@@ -3,7 +3,7 @@ import { MainProps } from '../../types';
 import CardList from '../../components/CardList';
 import Footer from '../../components/Footer';
 
-export default function Main({heroFilmCard, filmCards}: MainProps) {
+export default function Main({heroFilmCard, smallFilmCards}: MainProps) {
   const { name, released, genre } = heroFilmCard;
   return (
     <>
@@ -68,7 +68,7 @@ export default function Main({heroFilmCard, filmCards}: MainProps) {
               </a>
             </li>
           </ul>
-          <CardList filmCards={filmCards}/>
+          <CardList smallFilmCards={smallFilmCards} genre={undefined}/>
           <div className="catalog__more">
             <button className="catalog__button" type="button">
       Show more

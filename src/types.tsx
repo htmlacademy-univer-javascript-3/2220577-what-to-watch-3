@@ -1,12 +1,29 @@
+export type PlayerProps = {
+  filmCards: FilmProps[];
+}
+
+export type VideoPlayerProps = {
+  src: string;
+  id: number;
+  width: number;
+  height: number;
+}
+
+export type ReviewProps = {
+  id: string;
+  date: string;
+  user: string;
+  comment: string;
+  rating: number;
+}
 
 export type AddReviewProps = {
-  name: string;
-  posterImage: string;
-  previewImage: string;
+  filmCards: FilmProps[];
 }
 
 export type MoviePageProps = {
-  filmCards: FilmsProps[];
+  smallFilmCards: SmallFilmProps[];
+  filmCards: FilmProps[];
 }
 
 export type HeroProps = {
@@ -21,7 +38,7 @@ export type HeroProps = {
   isFavorite: boolean;
 }
 
-export type FilmsProps = {
+export type SmallFilmProps = {
   id: number;
   name: string;
   previewImage: string;
@@ -29,15 +46,38 @@ export type FilmsProps = {
   genre: string;
 }
 
-export type CardListProps = {
-  filmCards: FilmsProps[];
+export type FilmProps = {
+  id: number;
+  name: string;
+  posterImage: string;
+  backgroundImage: string;
+  backgroundColor: string;
+  videoLink: string;
+  description: string;
+  rating: number;
+  scoresCount: number;
+  director: string;
+  starring: string[];
+  runTime: number;
+  genre: string;
+  released: number;
+  isFavorite: boolean;
 }
 
-export type MyListProps = CardListProps;
+
+export type CardListProps = {
+  smallFilmCards: SmallFilmProps[];
+  genre: string | undefined;
+}
+
+export type MyListProps = {
+  smallFilmCards: SmallFilmProps[];
+}
 
 export type AppProps = {
   heroFilmCard: HeroProps;
-  filmCards: FilmsProps[];
+  filmCards: FilmProps[];
+  smallFilmCards: SmallFilmProps[];
 }
 
 export type CardProps = {
@@ -46,4 +86,7 @@ export type CardProps = {
   name:string;
 }
 
-export type MainProps = AppProps;
+export type MainProps = {
+  heroFilmCard: HeroProps;
+  smallFilmCards: SmallFilmProps[];
+}
