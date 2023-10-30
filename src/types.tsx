@@ -24,6 +24,7 @@ export type AddReviewProps = {
 export type MoviePageProps = {
   smallFilmCards: SmallFilmProps[];
   filmCards: FilmProps[];
+  reviews: ReviewProps[];
 }
 
 export type HeroProps = {
@@ -78,6 +79,7 @@ export type AppProps = {
   heroFilmCard: HeroProps;
   filmCards: FilmProps[];
   smallFilmCards: SmallFilmProps[];
+  reviews: ReviewProps[];
 }
 
 export type CardProps = {
