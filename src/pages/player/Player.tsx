@@ -1,5 +1,9 @@
 import { useNavigate, useParams } from 'react-router-dom';
-import { PlayerProps } from '../../types';
+import { FilmProps } from '../../types/types';
+
+type PlayerProps = {
+  filmCards: FilmProps[];
+}
 
 export default function Player({filmCards}: PlayerProps) {
   const params = useParams();

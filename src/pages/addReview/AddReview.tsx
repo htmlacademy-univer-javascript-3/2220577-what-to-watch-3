@@ -1,8 +1,12 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import Logo from '../../components/Logo';
 import Profile from '../../components/Profile';
-import { AddReviewProps } from '../../types';
 import FormReview from '../../components/FormReview';
+import { FilmProps } from '../../types/types';
+
+export type AddReviewProps = {
+  filmCards: FilmProps[];
+}
 
 export default function AddReview({filmCards}:AddReviewProps) {
   const navigate = useNavigate();

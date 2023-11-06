@@ -1,10 +1,19 @@
 
-import { useEffect, useRef, MouseEvent } from 'react';
+import { useEffect, useRef, MouseEvent, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { VideoPlayerProps } from '../types';
 
-export default function VideoPlayer({src, id, width, height}: VideoPlayerProps) {
+type VideoPlayerProps = {
+  src: string;
+  id: number;
+  width: number;
+  height: number;
+  poster: string;
+  name:string;
+}
+
+export default function VideoPlayer({src, id, width, height, poster, name}: VideoPlayerProps) {
   const videoRef = useRef(document.createElement('video'));
+  const [timeout, setTime] = useState<number>();
   useEffect(()=>{
     videoRef.current.src = src;
   }, [src]);
@@ -15,7 +24,10 @@ export default function VideoPlayer({src, id, width, height}: VideoPlayerProps) 
     if (!event.target) {
       return;
     }
-    event.target.play();
+    const timeOutId = window.setTimeout(() => {
+      event.target.play();
+    }, 1000);
+    setTime(timeOutId);
   }
 
   function stopMovie(event: MouseEvent<HTMLVideoElement> & {
@@ -24,7 +36,9 @@ export default function VideoPlayer({src, id, width, height}: VideoPlayerProps) 
     if (!event.target) {
       return;
     }
+    clearTimeout(timeout);
     event.target.pause();
+    event.target.load();
   }
 
 
@@ -34,7 +48,11 @@ export default function VideoPlayer({src, id, width, height}: VideoPlayerProps) 
         onMouseOver={playMovie}
         onMouseOut={stopMovie}
         loop muted ref={videoRef} controls={false} width={width} height={height}
+        poster={poster}
       />
+      <h3 className="small-film-card__title">
+        {name}
+      </h3>
     </Link>
   );
 }

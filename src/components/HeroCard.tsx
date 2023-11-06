@@ -1,4 +1,5 @@
-import { HeroProps } from '../types';
+import { Link } from 'react-router-dom';
+import { HeroProps } from '../types/types';
 import Logo from './Logo';
 import Profile from './Profile';
 
@@ -35,13 +36,15 @@ export default function HeroCard({name, released, genre}: HeroProps) {
             </p>
             <div className="film-card__buttons">
 
-              <button className="btn btn--play film-card__button" type="button">
-                <svg viewBox="0 0 19 19" width={19} height={19}>
-                  <use xlinkHref="#play-s" />
-                </svg>
-                <span>Play</span>
-              </button>
 
+              <button className="btn btn--play film-card__button" type="button">
+                <Link to={'player/1'} className='film-card__button' style={{textDecoration:'none', color: '#eee5b5'}}>
+                  <svg viewBox="0 0 19 19" width={19} height={19}>
+                    <use xlinkHref="#play-s" />
+                  </svg>
+                  <span>Play</span>
+                </Link>
+              </button>
               <button className="btn btn--list film-card__button" type="button">
                 <svg viewBox="0 0 19 20" width={19} height={20}>
                   <use xlinkHref="#add" />
