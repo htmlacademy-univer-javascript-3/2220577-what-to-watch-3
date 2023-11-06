@@ -1,4 +1,4 @@
-import { ReviewProps } from '../types';
+import { ReviewProps } from '../types/types';
 
 {/* <div className="review">
             <blockquote className="review__quote">

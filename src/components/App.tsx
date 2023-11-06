@@ -12,7 +12,14 @@ import Player from '../pages/player/Player';
 import NotFound from './NotFound';
 import {AppRoute, AuthorizationStatus} from '../consts';
 import PrivateRoute from './PrivateRoute';
-import { AppProps } from '../types';
+import { HeroProps, FilmProps, SmallFilmProps, ReviewProps } from '../types/types';
+
+type AppProps = {
+  heroFilmCard: HeroProps;
+  filmCards: FilmProps[];
+  smallFilmCards: SmallFilmProps[];
+  reviews: ReviewProps[];
+}
 
 export default function App({heroFilmCard, filmCards, smallFilmCards, reviews}: AppProps) {
   return (
@@ -21,14 +28,12 @@ export default function App({heroFilmCard, filmCards, smallFilmCards, reviews}: 
         <Route path={AppRoute.Root} element={
           <Main
             heroFilmCard={heroFilmCard}
-            smallFilmCards={smallFilmCards}
           />
         }
         />
         <Route path={AppRoute.Login} element={<SignIn />} />
         <Route path={AppRoute.Films} element={
           <MoviePage
-            smallFilmCards = {smallFilmCards}
             filmCards = {filmCards}
             reviews = {reviews}
           />

@@ -1,10 +1,18 @@
 import HeroCard from '../../components/HeroCard';
-import { MainProps } from '../../types';
-import CardList from '../../components/CardList';
 import Footer from '../../components/Footer';
+import { HeroProps } from '../../types/types';
+import Genres from '../../components/Genres';
+import { useAppDispatch } from '../../hooks';
+import { changeGenre } from '../../redux/store/action';
 
-export default function Main({heroFilmCard, smallFilmCards}: MainProps) {
+type MainProps = {
+  heroFilmCard: HeroProps;
+}
+
+export default function Main({heroFilmCard}: MainProps) {
   const { name, released, genre } = heroFilmCard;
+  const dispatch = useAppDispatch();
+  dispatch(changeGenre('All'));
   return (
     <>
       <meta charSet="UTF-8" />
@@ -14,67 +22,12 @@ export default function Main({heroFilmCard, smallFilmCards}: MainProps) {
       <link rel="stylesheet" href="css/main.min.css" />
       <HeroCard name={name} released={released} genre={genre} id={0} posterImage={''} backgroundImage={''} videoLink={''} isFavorite={false} previewImage={''}/>
       <div className="page-content">
-        <section className="catalog">
-          <h2 className="catalog__title visually-hidden">Catalog</h2>
-          <ul className="catalog__genres-list">
-            <li className="catalog__genres-item catalog__genres-item--active">
-              <a href="#" className="catalog__genres-link">
-        All genres
-              </a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">
-        Comedies
-              </a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">
-        Crime
-              </a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">
-        Documentary
-              </a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">
-        Dramas
-              </a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">
-        Horror
-              </a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">
-        Kids &amp; Family
-              </a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">
-        Romance
-              </a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">
-        Sci-Fi
-              </a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">
-        Thrillers
-              </a>
-            </li>
-          </ul>
-          <CardList smallFilmCards={smallFilmCards} genre={undefined}/>
-          <div className="catalog__more">
-            <button className="catalog__button" type="button">
-      Show more
-            </button>
-          </div>
-        </section>
+        <Genres/>
+        <div className="catalog__more">
+          <button className="catalog__button" type="button">
+                Show more
+          </button>
+        </div>
         <Footer/>
       </div>
     </>);

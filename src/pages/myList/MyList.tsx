@@ -1,9 +1,12 @@
 import CardList from '../../components/CardList';
-import { MyListProps } from '../../types';
 import Footer from '../../components/Footer';
 import Logo from '../../components/Logo';
 import Profile from '../../components/Profile';
+import { SmallFilmProps } from '../../types/types';
 
+type MyListProps = {
+  smallFilmCards: SmallFilmProps[];
+}
 
 export default function MyList({smallFilmCards}: MyListProps) {
   return (

@@ -1,5 +1,4 @@
 import CardList from '../../components/CardList';
-import { MoviePageProps } from '../../types';
 import Logo from '../../components/Logo';
 import Profile from '../../components/Profile';
 import Footer from '../../components/Footer';
@@ -8,14 +7,17 @@ import { useState } from 'react';
 import Overview from '../../components/Overview';
 import Details from '../../components/Details';
 import Reviews from '../../components/Reviews';
+import { FilmProps, ReviewProps } from '../../types/types';
+import { useAppDispatch } from '../../hooks';
+import { changeGenre } from '../../redux/store/action';
 
-export default function MoviePage({smallFilmCards, filmCards, reviews}: MoviePageProps) {
-  const params = useParams();
-  const [toggleState, setToggleState] = useState(1);
-  const id = params.id ? parseInt(params.id, 10) : 1;
-  const film = filmCards.find((x) => x.id === id);
+export type MoviePageProps = {
+  filmCards: FilmProps[];
+  reviews: ReviewProps[];
+}
+
+function convertToText(rating:number):string{
   let textRating = '';
-  const rating = film ? film.rating : 0;
   if (rating <= 3){
     textRating = 'Bad';
   } else if (rating > 3 && rating <= 5){
@@ -25,6 +27,19 @@ export default function MoviePage({smallFilmCards, filmCards, reviews}: MoviePag
   } else if (rating >= 8){
     textRating = 'Very good';
   }
+  return textRating;
+}
+
+export default function MoviePage({filmCards, reviews}: MoviePageProps) {
+  const params = useParams();
+  const [toggleState, setToggleState] = useState(1);
+  const id = params.id ? parseInt(params.id, 10) : 1;
+  const film = filmCards.find((x) => x.id === id);
+  const rating = film ? film.rating : 0;
+  const textRating = convertToText(rating);
+
+  const dispatch = useAppDispatch();
+  dispatch(changeGenre(film?.genre ? film?.genre : 'All'));
 
   const toggleTabs = (index:number) => {
     setToggleState(index);
@@ -53,15 +68,14 @@ export default function MoviePage({smallFilmCards, filmCards, reviews}: MoviePag
                 <span className="film-card__year">{film?.released}</span>
               </p>
               <div className="film-card__buttons">
-                <Link to={`/player/${id}`} style={{ textDecoration: 'none' }}>
-                  <button className="btn btn--play film-card__button" type="button">
+                <button className="btn btn--play film-card__button" type="button">
+                  <Link to={`/player/${id}`} className='film-card__button' style={{textDecoration:'none', color: '#eee5b5'}}>
                     <svg viewBox="0 0 19 19" width={19} height={19}>
                       <use xlinkHref="#play-s" />
                     </svg>
                     <span>Play</span>
-                  </button>
-                </Link>
-
+                  </Link>
+                </button>
                 <button className="btn btn--list film-card__button" type="button">
                   <svg viewBox="0 0 19 20" width={19} height={20}>
                     <use xlinkHref="#add" />
@@ -135,7 +149,7 @@ export default function MoviePage({smallFilmCards, filmCards, reviews}: MoviePag
       <div className="page-content">
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
-          <CardList smallFilmCards={smallFilmCards} genre={film?.genre}></CardList>
+          <CardList/>
         </section>
         <Footer/>
       </div>
