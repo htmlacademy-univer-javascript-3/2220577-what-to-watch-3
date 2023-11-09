@@ -9,7 +9,7 @@ import Details from '../../components/Details';
 import Reviews from '../../components/Reviews';
 import { FilmProps, ReviewProps } from '../../types/types';
 import { useAppDispatch } from '../../hooks';
-import { changeGenre } from '../../redux/store/action';
+import { filterByGenre, showFilms } from '../../redux/store/action';
 
 export type MoviePageProps = {
   filmCards: FilmProps[];
@@ -39,7 +39,8 @@ export default function MoviePage({filmCards, reviews}: MoviePageProps) {
   const textRating = convertToText(rating);
 
   const dispatch = useAppDispatch();
-  dispatch(changeGenre(film?.genre ? film?.genre : 'All'));
+  dispatch(filterByGenre(film?.genre ? film?.genre : 'All'));
+  dispatch(showFilms());
 
   const toggleTabs = (index:number) => {
     setToggleState(index);

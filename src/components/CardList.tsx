@@ -2,7 +2,7 @@ import Card from './Card';
 import { useAppSelector } from '../hooks';
 
 export default function CardList() {
-  const films = useAppSelector((state) => state.films);
+  const films = useAppSelector((state) => state.showedFilms);
   return (
     <div className="catalog__films-list">
       {films.map((filmCard) =>
