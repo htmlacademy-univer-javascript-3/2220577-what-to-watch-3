@@ -3,7 +3,8 @@ import Footer from '../../components/Footer';
 import { HeroProps } from '../../types/types';
 import Genres from '../../components/Genres';
 import { useAppDispatch } from '../../hooks';
-import { changeGenre } from '../../redux/store/action';
+import { filterByGenre, showFilms } from '../../redux/store/action';
+import ShowMore from '../../components/ShowMore';
 
 type MainProps = {
   heroFilmCard: HeroProps;
@@ -12,7 +13,8 @@ type MainProps = {
 export default function Main({heroFilmCard}: MainProps) {
   const { name, released, genre } = heroFilmCard;
   const dispatch = useAppDispatch();
-  dispatch(changeGenre('All'));
+  dispatch(filterByGenre('All'));
+  dispatch(showFilms());
   return (
     <>
       <meta charSet="UTF-8" />
@@ -23,11 +25,7 @@ export default function Main({heroFilmCard}: MainProps) {
       <HeroCard name={name} released={released} genre={genre} id={0} posterImage={''} backgroundImage={''} videoLink={''} isFavorite={false} previewImage={''}/>
       <div className="page-content">
         <Genres/>
-        <div className="catalog__more">
-          <button className="catalog__button" type="button">
-                Show more
-          </button>
-        </div>
+        <ShowMore/>
         <Footer/>
       </div>
     </>);

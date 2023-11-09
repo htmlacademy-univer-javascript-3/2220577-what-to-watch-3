@@ -1,5 +1,5 @@
 import { useAppDispatch } from '../hooks';
-import {changeGenre} from '../redux/store/action';
+import {filterByGenre, showFilms} from '../redux/store/action';
 
 type GenreProps = {
   name:string;
@@ -15,7 +15,8 @@ export default function Genre({name, isActive, setActive}:GenreProps) {
     <li className={`catalog__genres-item ${isActive === name ? 'catalog__genres-item--active' : ''}`}>
       <div className='catalog__genres-link'
         onClick={() => {
-          dispatch(changeGenre(name));
+          dispatch(filterByGenre(name));
+          dispatch(showFilms());
           setActive(name);
         }}
       >
