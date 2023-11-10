@@ -13,6 +13,8 @@ import NotFound from './NotFound';
 import {AppRoute, AuthorizationStatus} from '../consts';
 import PrivateRoute from './PrivateRoute';
 import { HeroProps, FilmProps, SmallFilmProps, ReviewProps } from '../types/types';
+import { useAppSelector } from '../hooks';
+import LoadingScreen from '../pages/loading-screen/LoadingScreen';
 
 type AppProps = {
   heroFilmCard: HeroProps;
@@ -22,6 +24,12 @@ type AppProps = {
 }
 
 export default function App({heroFilmCard, filmCards, smallFilmCards, reviews}: AppProps) {
+  const isFilmsLoading = useAppSelector((state) => state.isFilmsLoading);
+  if (isFilmsLoading) {
+    return (
+      <LoadingScreen />
+    );
+  }
   return (
     <BrowserRouter>
       <Routes>
