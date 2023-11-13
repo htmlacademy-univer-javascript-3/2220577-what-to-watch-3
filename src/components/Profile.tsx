@@ -1,6 +1,12 @@
 import { Link } from 'react-router-dom';
+import { useAppSelector } from '../hooks';
+import { AuthorizationStatus } from '../consts';
+import Logout from './Logout';
+import Login from './Login';
 
 export default function Profile() {
+  const authStatus = useAppSelector((state) => state.authorizationStatus);
+  const isAuth = authStatus === AuthorizationStatus.Auth;
   return (
     <ul className="user-block">
       <li className="user-block__item">
@@ -9,7 +15,7 @@ export default function Profile() {
         </div>
       </li>
       <li className="user-block__item">
-        <Link to={'/login'} className="user-block__link" style={{ textDecoration: 'none' }}>Sign out</Link>
+        {isAuth ? <Logout/> : <Login/>}
       </li>
     </ul>
   );

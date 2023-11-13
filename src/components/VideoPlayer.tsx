@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 type VideoPlayerProps = {
   src: string;
-  id: number;
+  id: string;
   width: number;
   height: number;
   poster: string;
