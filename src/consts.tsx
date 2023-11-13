@@ -13,16 +13,18 @@ export enum AuthorizationStatus {
   Unknown = 'UNKNOWN',
 }
 
-export enum APIRoute {
-  Films = '/wtw/films',
-  Film = '/wtw/films/{filmId}',
-  SimilarFilms = '/wtw/films/{filmId}/similar',
-  Promo = '/wtw/promo',
-  Favorite = '/wtw/favorite',
-  CheckFavorite = '/wtw/favorite/{filmId}/{status}',
-  Comments = '/wtw/comments/{filmId}',
-  AddComment = '/wtw/comments/{filmId}',
+export const TIMEOUT_SHOW_ERROR = 2000;
 
-  Login = '/wtw/login',
-  Logout = '/wtw/logout',
+export enum APIRoute {
+  Films = '/films',
+  Film = '/films/',
+  SimilarFilms = '/films/{filmId}/similar',
+  Promo = '/promo',
+  Favorite = '/favorite',
+  CheckFavorite = '/favorite/{filmId}/{status}',
+  Comments = '/comments/{filmId}',
+  AddComment = '/comments/{filmId}',
+
+  Login = '/login',
+  Logout = '/logout',
 }

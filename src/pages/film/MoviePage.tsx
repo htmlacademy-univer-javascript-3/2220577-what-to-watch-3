@@ -3,16 +3,17 @@ import Logo from '../../components/Logo';
 import Profile from '../../components/Profile';
 import Footer from '../../components/Footer';
 import { Link, useParams } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Overview from '../../components/Overview';
 import Details from '../../components/Details';
 import Reviews from '../../components/Reviews';
-import { FilmProps, ReviewProps } from '../../types/types';
-import { useAppDispatch } from '../../hooks';
+import { ReviewProps } from '../../types/types';
+import { useAppDispatch, useAppSelector } from '../../hooks';
 import { filterByGenre, showFilms } from '../../redux/store/action';
+import { fetchFilm } from '../../redux/store/api-actions';
+import { store } from '../../redux/store';
 
 export type MoviePageProps = {
-  filmCards: FilmProps[];
   reviews: ReviewProps[];
 }
 
@@ -30,11 +31,18 @@ function convertToText(rating:number):string{
   return textRating;
 }
 
-export default function MoviePage({filmCards, reviews}: MoviePageProps) {
+export default function MoviePage({reviews}: MoviePageProps) {
+
   const params = useParams();
+  const id = params.id ?? '';
+
+  useEffect(() => {
+    store.dispatch(fetchFilm(id));
+  }, [id]);
+
+  const film = useAppSelector((state) => state.loadFilm);
+
   const [toggleState, setToggleState] = useState(1);
-  const id = params.id ? parseInt(params.id, 10) : 1;
-  const film = filmCards.find((x) => x.id === id);
   const rating = film ? film.rating : 0;
   const textRating = convertToText(rating);
 

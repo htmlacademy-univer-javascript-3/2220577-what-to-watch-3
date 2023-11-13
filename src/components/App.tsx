@@ -1,6 +1,5 @@
 import Main from '../pages/main/Main';
 import {
-  BrowserRouter,
   Routes,
   Route,
 } from 'react-router-dom';
@@ -16,6 +15,7 @@ import { HeroProps, FilmProps, SmallFilmProps, ReviewProps } from '../types/type
 import { useAppSelector } from '../hooks';
 import LoadingScreen from '../pages/loading-screen/LoadingScreen';
 
+
 type AppProps = {
   heroFilmCard: HeroProps;
   filmCards: FilmProps[];
@@ -24,53 +24,53 @@ type AppProps = {
 }
 
 export default function App({heroFilmCard, filmCards, smallFilmCards, reviews}: AppProps) {
+  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
   const isFilmsLoading = useAppSelector((state) => state.isFilmsLoading);
-  if (isFilmsLoading) {
+
+  if (authorizationStatus === AuthorizationStatus.Unknown || isFilmsLoading) {
     return (
       <LoadingScreen />
     );
   }
+
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path={AppRoute.Root} element={
-          <Main
-            heroFilmCard={heroFilmCard}
+    <Routes>
+      <Route path={AppRoute.Root} element={
+        <Main
+          heroFilmCard={heroFilmCard}
+        />
+      }
+      />
+      <Route path={AppRoute.Login} element={<SignIn />} />
+      <Route path={AppRoute.Films} element={
+        <MoviePage
+          reviews = {reviews}
+        />
+      }
+      />
+      <Route path={AppRoute.MyListEnum} element={
+        <PrivateRoute>
+          <MyList
+            smallFilmCards = {smallFilmCards}
           />
-        }
-        />
-        <Route path={AppRoute.Login} element={<SignIn />} />
-        <Route path={AppRoute.Films} element={
-          <MoviePage
-            filmCards = {filmCards}
-            reviews = {reviews}
-          />
-        }
-        />
-        <Route path={AppRoute.MyListEnum} element={
-          <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
-            <MyList
-              smallFilmCards = {smallFilmCards}
-            />
-          </PrivateRoute>
-        }
-        />
-        <Route path={AppRoute.AddReviewEnum} element={
-          <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
-            <AddReview
-              filmCards = {filmCards}
-            />
-          </PrivateRoute>
-        }
-        />
-        <Route path={AppRoute.PlayerEnum} element={
-          <Player
+        </PrivateRoute>
+      }
+      />
+      <Route path={AppRoute.AddReviewEnum} element={
+        <PrivateRoute>
+          <AddReview
             filmCards = {filmCards}
           />
-        }
+        </PrivateRoute>
+      }
+      />
+      <Route path={AppRoute.PlayerEnum} element={
+        <Player
+          filmCards = {filmCards}
         />
-        <Route path="*" element={<NotFound />}/>
-      </Routes>
-    </BrowserRouter>
+      }
+      />
+      <Route path="*" element={<NotFound />}/>
+    </Routes>
   );
 }

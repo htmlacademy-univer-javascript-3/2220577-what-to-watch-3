@@ -1,6 +1,6 @@
 import {createReducer} from '@reduxjs/toolkit';
-import { showFilms, filterByGenre, loadFilms, requireAuthorization, setError, setFilmsLoadingStatus} from './action';
-import { SmallFilmProps } from '../../types/types';
+import { showFilms, filterByGenre, loadFilms, changeAuth, setError, setFilmsLoadingStatus, loadFilm, setFilmLoadingStatus, setValidationError} from './action';
+import { FilmProps, SmallFilmProps } from '../../types/types';
 import { AuthorizationStatus } from '../../consts';
 
 type initialStateProps = {
@@ -12,6 +12,9 @@ type initialStateProps = {
   authorizationStatus: AuthorizationStatus;
   error: string | null;
   isFilmsLoading: boolean;
+  loadFilm: FilmProps | null;
+  isFilmLoading: boolean;
+  isSigninError: boolean;
 }
 
 const initialState:initialStateProps = {
@@ -23,6 +26,9 @@ const initialState:initialStateProps = {
   authorizationStatus: AuthorizationStatus.Unknown,
   error: null,
   isFilmsLoading: false,
+  loadFilm: null,
+  isFilmLoading: false,
+  isSigninError: false,
 };
 
 const reducer = createReducer(initialState, (builder) => {
@@ -56,7 +62,7 @@ const reducer = createReducer(initialState, (builder) => {
     .addCase(loadFilms, (state, action) => {
       state.loadFilms = action.payload;
     })
-    .addCase(requireAuthorization, (state, action) => {
+    .addCase(changeAuth, (state, action) => {
       state.authorizationStatus = action.payload;
     })
     .addCase(setError, (state, action) => {
@@ -64,6 +70,15 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(setFilmsLoadingStatus, (state, action) => {
       state.isFilmsLoading = action.payload;
+    })
+    .addCase(setFilmLoadingStatus, (state, action) => {
+      state.isFilmLoading = action.payload;
+    })
+    .addCase(loadFilm, (state, action) => {
+      state.loadFilm = action.payload;
+    })
+    .addCase(setValidationError, (state, action) => {
+      state.isSigninError = action.payload;
     });
 });
 
