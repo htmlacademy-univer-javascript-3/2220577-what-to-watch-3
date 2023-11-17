@@ -7,15 +7,11 @@ import { useEffect, useState } from 'react';
 import Overview from '../../components/Overview';
 import Details from '../../components/Details';
 import Reviews from '../../components/Reviews';
-import { ReviewProps } from '../../types/types';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { filterByGenre, showFilms } from '../../redux/store/action';
-import { fetchFilm } from '../../redux/store/api-actions';
+import { fetchFilm, fetchReviews, fetchSimilarFilms } from '../../redux/store/api-actions';
 import { store } from '../../redux/store';
-
-export type MoviePageProps = {
-  reviews: ReviewProps[];
-}
+import { AuthorizationStatus } from '../../consts';
 
 function convertToText(rating:number):string{
   let textRating = '';
@@ -31,16 +27,21 @@ function convertToText(rating:number):string{
   return textRating;
 }
 
-export default function MoviePage({reviews}: MoviePageProps) {
+export default function MoviePage() {
 
   const params = useParams();
   const id = params.id ?? '';
 
   useEffect(() => {
     store.dispatch(fetchFilm(id));
+    store.dispatch(fetchSimilarFilms(id));
+    store.dispatch(fetchReviews(id));
   }, [id]);
 
   const film = useAppSelector((state) => state.loadFilm);
+  const reviews = useAppSelector((state) => state.reviews);
+  const isLogin = useAppSelector((state) => state.authorizationStatus) === AuthorizationStatus.Auth;
+
 
   const [toggleState, setToggleState] = useState(1);
   const rating = film ? film.rating : 0;
@@ -92,7 +93,7 @@ export default function MoviePage({reviews}: MoviePageProps) {
                   <span>My list</span>
                   <span className="film-card__count">9</span>
                 </button>
-                <Link to={'review'} className="btn film-card__button">Add review</Link>
+                {isLogin && (<Link to={'review'} className="btn film-card__button">Add review</Link>)}
               </div>
             </div>
           </div>

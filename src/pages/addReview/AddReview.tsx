@@ -1,18 +1,12 @@
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Logo from '../../components/Logo';
 import Profile from '../../components/Profile';
 import FormReview from '../../components/FormReview';
-import { FilmProps } from '../../types/types';
+import { useAppSelector } from '../../hooks';
 
-export type AddReviewProps = {
-  filmCards: FilmProps[];
-}
-
-export default function AddReview({filmCards}:AddReviewProps) {
+export default function AddReview() {
   const navigate = useNavigate();
-  const params = useParams();
-  const id = params.id ? parseInt(params.id, 10) : 1;
-  const film = filmCards.find((x) => x.id === id);
+  const film = useAppSelector((state) => state.loadFilm);
   return (
     <section className="film-card film-card--full">
       <div className="film-card__header">

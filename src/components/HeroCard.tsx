@@ -1,16 +1,27 @@
 import { Link } from 'react-router-dom';
-import { HeroProps } from '../types/types';
 import Logo from './Logo';
 import Profile from './Profile';
+import { useAppDispatch, useAppSelector } from '../hooks';
+import { useEffect } from 'react';
+import { fetchHeroFilm } from '../redux/store/api-actions';
 
-export default function HeroCard({name, released, genre}: HeroProps) {
+export default function HeroCard() {
+
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(fetchHeroFilm());
+  },[dispatch]);
+
+  const heroFilm = useAppSelector((state) => state.heroFilm);
+
 
   return (
     <section className="film-card">
       <div className="film-card__bg">
         <img
-          src="img/bg-the-grand-budapest-hotel.jpg"
-          alt="The Grand Budapest Hotel"
+          src={heroFilm?.backgroundImage}
+          alt={heroFilm?.name || 'bg alt'}
         />
       </div>
       <h1 className="visually-hidden">WTW</h1>
@@ -22,17 +33,17 @@ export default function HeroCard({name, released, genre}: HeroProps) {
         <div className="film-card__info">
           <div className="film-card__poster">
             <img
-              src="img/the-grand-budapest-hotel-poster.jpg"
-              alt="The Grand Budapest Hotel poster"
+              src={heroFilm?.posterImage}
+              alt={heroFilm?.name || 'poster alt'}
               width={218}
               height={327}
             />
           </div>
           <div className="film-card__desc">
-            <h2 className="film-card__title">{name}</h2>
+            <h2 className="film-card__title">{heroFilm?.name}</h2>
             <p className="film-card__meta">
-              <span className="film-card__genre">{genre}</span>
-              <span className="film-card__year">{released}</span>
+              <span className="film-card__genre">{heroFilm?.genre}</span>
+              <span className="film-card__year">{heroFilm?.released}</span>
             </p>
             <div className="film-card__buttons">
 
