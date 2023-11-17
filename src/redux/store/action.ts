@@ -1,6 +1,7 @@
 import { createAction } from '@reduxjs/toolkit';
-import { FilmProps, SmallFilmProps } from '../../types/types';
+import { FilmProps, HeroProps, ReviewProps, SmallFilmProps } from '../../types/types';
 import { AppRoute, AuthorizationStatus } from '../../consts';
+import { UserData } from '../../types/user-data';
 
 export const filterByGenre = createAction('filterByGenre', (genre:string) => ({
   payload: genre,
@@ -19,7 +20,14 @@ export const setFilmLoadingStatus = createAction<boolean>('setFilmLoading');
 
 export const loadFilm = createAction<FilmProps>('loadFilm');
 
+export const loadHeroFilm = createAction<HeroProps>('loadHeroFilm');
+
 export const redirectToRoute = createAction<AppRoute>('redirectToRoute');
 
 export const setValidationError = createAction<boolean>('setValidationError');
 
+export const loadSimilarFilms = createAction<SmallFilmProps[]>('loadSimilarFilms');
+
+export const loadReviews = createAction<ReviewProps[]>('loadReviews');
+
+export const saveUser = createAction<UserData>('saveUser');
