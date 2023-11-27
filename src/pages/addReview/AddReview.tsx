@@ -3,10 +3,11 @@ import Logo from '../../components/Logo';
 import Profile from '../../components/Profile';
 import FormReview from '../../components/FormReview';
 import { useAppSelector } from '../../hooks';
+import { getFilm } from '../../redux/store/data-process/data.selectors';
 
 export default function AddReview() {
   const navigate = useNavigate();
-  const film = useAppSelector((state) => state.loadFilm);
+  const film = useAppSelector(getFilm);
   return (
     <section className="film-card film-card--full">
       <div className="film-card__header">
