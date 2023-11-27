@@ -1,5 +1,5 @@
 import { useAppDispatch } from '../hooks';
-import {filterByGenre, showFilms} from '../redux/store/action';
+import { filterByGenre, showFilms } from '../redux/store/data-process/data-process';
 
 type GenreProps = {
   name:string;

@@ -1,8 +1,10 @@
 import Card from './Card';
 import { useAppSelector } from '../hooks';
+import { getShowedFilms } from '../redux/store/data-process/data.selectors';
 
 export default function CardList() {
-  const films = useAppSelector((state) => state.showedFilms);
+  const films = useAppSelector(getShowedFilms);
+
   return (
     <div className="catalog__films-list">
       {films.map((filmCard) =>

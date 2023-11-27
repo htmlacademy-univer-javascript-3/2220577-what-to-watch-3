@@ -2,13 +2,17 @@ import HeroCard from '../../components/HeroCard';
 import Footer from '../../components/Footer';
 import Genres from '../../components/Genres';
 import { useAppDispatch } from '../../hooks';
-import { filterByGenre, showFilms } from '../../redux/store/action';
 import ShowMore from '../../components/ShowMore';
+import { filterByGenre, showFilms } from '../../redux/store/data-process/data-process';
+import { useEffect } from 'react';
 
 export default function Main() {
   const dispatch = useAppDispatch();
-  dispatch(filterByGenre('All'));
-  dispatch(showFilms());
+  useEffect(() => {
+    dispatch(filterByGenre('All'));
+    dispatch(showFilms());
+  }, [dispatch]);
+
   return (
     <>
       <meta charSet="UTF-8" />

@@ -1,3 +1,4 @@
+
 type OverviewProps = {
   director: string | undefined;
   starring: string[] | undefined;
@@ -8,7 +9,7 @@ type OverviewProps = {
   textRating: string;
 }
 
-export default function Overview({rating, textRating, scoresCount, active, description, director, starring}: OverviewProps) {
+function Overview({rating, textRating, scoresCount, active, description, director, starring}: OverviewProps) {
   return (
     <div>
       {active &&
@@ -37,3 +38,5 @@ export default function Overview({rating, textRating, scoresCount, active, descr
     </div>
   );
 }
+
+export default Overview;

@@ -11,19 +11,14 @@ import Player from '../pages/player/Player';
 import NotFound from './NotFound';
 import {AppRoute, AuthorizationStatus} from '../consts';
 import PrivateRoute from './PrivateRoute';
-import { FilmProps, SmallFilmProps } from '../types/types';
 import { useAppSelector } from '../hooks';
 import LoadingScreen from '../pages/loading-screen/LoadingScreen';
+import { getAuthStatus } from '../redux/store/user-process/user.selectors';
+import { getFilmsLoadStatus } from '../redux/store/data-process/data.selectors';
 
-
-type AppProps = {
-  filmCards: FilmProps[];
-  smallFilmCards: SmallFilmProps[];
-}
-
-export default function App({filmCards, smallFilmCards}: AppProps) {
-  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
-  const isFilmsLoading = useAppSelector((state) => state.isFilmsLoading);
+export default function App() {
+  const authorizationStatus = useAppSelector(getAuthStatus);
+  const isFilmsLoading = useAppSelector(getFilmsLoadStatus);
 
   if (authorizationStatus === AuthorizationStatus.Unknown || isFilmsLoading) {
     return (
@@ -44,9 +39,7 @@ export default function App({filmCards, smallFilmCards}: AppProps) {
       />
       <Route path={AppRoute.MyListEnum} element={
         <PrivateRoute>
-          <MyList
-            smallFilmCards = {smallFilmCards}
-          />
+          <MyList/>
         </PrivateRoute>
       }
       />
@@ -57,9 +50,7 @@ export default function App({filmCards, smallFilmCards}: AppProps) {
       }
       />
       <Route path={AppRoute.PlayerEnum} element={
-        <Player
-          filmCards = {filmCards}
-        />
+        <Player/>
       }
       />
       <Route path="*" element={<NotFound />}/>

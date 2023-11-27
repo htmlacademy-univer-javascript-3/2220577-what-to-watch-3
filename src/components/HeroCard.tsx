@@ -4,6 +4,7 @@ import Profile from './Profile';
 import { useAppDispatch, useAppSelector } from '../hooks';
 import { useEffect } from 'react';
 import { fetchHeroFilm } from '../redux/store/api-actions';
+import { getHeroFilm } from '../redux/store/data-process/data.selectors';
 
 export default function HeroCard() {
 
@@ -13,7 +14,7 @@ export default function HeroCard() {
     dispatch(fetchHeroFilm());
   },[dispatch]);
 
-  const heroFilm = useAppSelector((state) => state.heroFilm);
+  const heroFilm = useAppSelector(getHeroFilm);
 
 
   return (
