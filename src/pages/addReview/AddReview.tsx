@@ -4,17 +4,21 @@ import Profile from '../../components/Profile';
 import FormReview from '../../components/FormReview';
 import { useAppSelector } from '../../hooks';
 import { getFilm } from '../../redux/store/data-process/data.selectors';
+import { Helmet } from 'react-helmet-async';
 
 export default function AddReview() {
   const navigate = useNavigate();
   const film = useAppSelector(getFilm);
   return (
     <section className="film-card film-card--full">
+      <Helmet>
+        <title>Отзыв</title>
+      </Helmet>
       <div className="film-card__header">
         <div className="film-card__bg">
           <img
-            src={film?.backgroundImage}
-            alt={film?.name}
+            src={film.backgroundImage}
+            alt={film.name}
           />
         </div>
         <h1 className="visually-hidden">WTW</h1>
@@ -24,7 +28,7 @@ export default function AddReview() {
             <ul className="breadcrumbs__list">
               <li className="breadcrumbs__item">
                 <a onClick={() => navigate(-1)} className="breadcrumbs__link">
-                  {film?.name}
+                  {film.name}
                 </a>
               </li>
               <li className="breadcrumbs__item">
@@ -36,14 +40,14 @@ export default function AddReview() {
         </header>
         <div className="film-card__poster film-card__poster--small">
           <img
-            src={film?.posterImage}
-            alt={film?.name}
+            src={film.posterImage}
+            alt={film.name}
             width={218}
             height={327}
           />
         </div>
       </div>
-      <FormReview/>
+      <FormReview id={film.id}/>
     </section>
   );
 }

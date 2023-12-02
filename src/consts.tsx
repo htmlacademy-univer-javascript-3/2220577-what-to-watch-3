@@ -4,7 +4,8 @@ export enum AppRoute {
   MyListEnum = '/mylist',
   Films = '/films/:id',
   AddReviewEnum = '/films/:id/review',
-  PlayerEnum = '/player/:id'
+  PlayerEnum = '/player/:id',
+  NotFound = '*',
 }
 
 export enum AuthorizationStatus {
@@ -13,14 +14,12 @@ export enum AuthorizationStatus {
   Unknown = 'UNKNOWN',
 }
 
-export const TIMEOUT_SHOW_ERROR = 2000;
-
 export enum APIRoute {
   Films = '/films',
   Film = '/films/',
   Promo = '/promo',
   Favorite = '/favorite/',
-  CheckFavorite = '/favorite/{filmId}/{status}',
+  SetFilmStatus = '/favorite/',
   Comments = '/comments/',
   AddComment = '/comments/',
 
@@ -31,6 +30,12 @@ export enum APIRoute {
 export enum NameSpace {
   Data = 'DATA',
   User = 'USER',
+}
+
+
+export enum FilmStatus {
+  Viewed = 0,
+  ToView = 1,
 }
 
 
