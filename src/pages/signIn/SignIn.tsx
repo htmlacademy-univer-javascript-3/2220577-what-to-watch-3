@@ -6,6 +6,7 @@ import { loginAction } from '../../redux/store/api-actions';
 import { AppRoute } from '../../consts';
 import { redirectToRoute } from '../../redux/store/action';
 import { getSignInError } from '../../redux/store/user-process/user.selectors';
+import { Helmet } from 'react-helmet-async';
 
 export default function SignIn() {
   const loginRef = useRef<HTMLInputElement | null>(null);
@@ -28,6 +29,9 @@ export default function SignIn() {
 
   return (
     <div className="user-page">
+      <Helmet>
+        <title>Авторизация</title>
+      </Helmet>
       <header className="page-header user-page__head">
         <Logo/>
         <h1 className="page-title user-page__title">Sign in</h1>

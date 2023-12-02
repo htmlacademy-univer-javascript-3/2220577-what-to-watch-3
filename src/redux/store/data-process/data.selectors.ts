@@ -38,3 +38,7 @@ export const getSimilarFilms = createSelector(
   (state: State) => state[NameSpace.Data],
   (state: FilmData) => state.similarFilms,
 );
+export const getMyFilms = createSelector(
+  (state: State) => state[NameSpace.Data],
+  (state: FilmData) => state.myList,
+);
