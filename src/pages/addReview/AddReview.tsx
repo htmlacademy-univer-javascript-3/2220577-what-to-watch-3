@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
-import Logo from '../../components/Logo';
-import Profile from '../../components/Profile';
-import FormReview from '../../components/FormReview';
+import Logo from '../../components/logo/Logo';
+import Profile from '../../components/profile/Profile';
+import FormReview from '../../components/form-review/FormReview';
 import { useAppSelector } from '../../hooks';
 import { getFilm } from '../../redux/store/data-process/data.selectors';
 import { Helmet } from 'react-helmet-async';
