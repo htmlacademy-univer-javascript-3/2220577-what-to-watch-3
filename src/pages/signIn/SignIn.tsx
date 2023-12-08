@@ -1,6 +1,6 @@
 import { useRef, FormEvent } from 'react';
-import Footer from '../../components/Footer';
-import Logo from '../../components/Logo';
+import Footer from '../../components/footer/Footer';
+import Logo from '../../components/logo/Logo';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { loginAction } from '../../redux/store/api-actions';
 import { AppRoute } from '../../consts';
