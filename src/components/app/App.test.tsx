@@ -1,7 +1,7 @@
 import { render, screen} from '@testing-library/react';
 import { MemoryHistory, createMemoryHistory } from 'history';
 import { withHistory, withStore } from '../../utils/mock-component';
-import { AppRoute, genres } from '../../consts';
+import { AppRoute, AuthorizationStatus, NameSpace, genres } from '../../consts';
 import App from './App';
 import { makeFakeStore } from '../../utils/mocks';
 import { film } from '../../utils/films';
@@ -39,7 +39,34 @@ describe('Application Routing', () => {
 
   it('should render "MoviePage" when user navigate to "/films/:id"', () => {
     const withHistoryComponent = withHistory(<App />, mockHistory);
-    const { withStoreComponent } = withStore(withHistoryComponent, makeFakeStore());
+    const { withStoreComponent } = withStore(withHistoryComponent, makeFakeStore({
+      [NameSpace.Data]: {
+        heroFilm: null,
+        heroFilmLoadError: false,
+        isHeroFilmLoading: false,
+        allLoadedFilms: [],
+        isFilmsLoading: false,
+        filmsLoadError: false,
+        loadedFilm: film,
+        isFilmLoading: false,
+        filmLoadError: false,
+        allFilmsByGenre: [],
+        genre: '',
+        reviews: [],
+        isReviewsLoading: false,
+        ReviewsLoadError: false,
+        similarFilms: [],
+        similarFilmsLoadError: false,
+        isSimilarFilmsLoading: false,
+        myList: [],
+        isMyListLoading: false,
+        MyListLoadError: false,
+        showedFilms: [],
+        shownFilmsCount: 0
+      },
+    }));
+
+    // needs loaded film in store to render correctly
     mockHistory.push(`/films/${film.id}`);
 
     render(withStoreComponent);
@@ -49,14 +76,124 @@ describe('Application Routing', () => {
     expect(screen.getByText(/Reviews/i)).toBeInTheDocument();
   });
 
-  // it('should render "MyList" when user navigate to "/mylist"', () => {
-  //   const withHistoryComponent = withHistory(<App />, mockHistory);
-  //   const { withStoreComponent } = withStore(withHistoryComponent, makeFakeStore);
-  //   mockHistory.push(AppRoute.MyListEnum);
+  it('should render the "MyList" when user navigate to "/mylist"', () => {
+    const withHistoryComponent = withHistory(<App />, mockHistory);
+    const { withStoreComponent } = withStore(
+      withHistoryComponent,
+      makeFakeStore({
+        [NameSpace.User]: {
+          authorizationStatus: AuthorizationStatus.Auth,
+          user: {
+            id:123,
+            email:'john@mail.ru',
+            token: 'asd213=',
+            avatarUrl:'photo.jpg',
+          },
+          signInError: false,
+        },
+      })
+    );
+    mockHistory.push('/mylist');
 
-  //   render(withStoreComponent);
+    render(withStoreComponent);
 
-  //   expect(screen.getByText(/My list/i)).toBeInTheDocument();
-  // });
+    expect(screen.getByText('My list')).toBeInTheDocument();
+  });
+
+  it('should render the "Player" when user navigate to "/player"', () => {
+    const withHistoryComponent = withHistory(<App />, mockHistory);
+    const { withStoreComponent } = withStore(withHistoryComponent, makeFakeStore({
+      [NameSpace.Data]: {
+        heroFilm: null,
+        heroFilmLoadError: false,
+        isHeroFilmLoading: false,
+        allLoadedFilms: [],
+        isFilmsLoading: false,
+        filmsLoadError: false,
+        loadedFilm: film,
+        isFilmLoading: false,
+        filmLoadError: false,
+        allFilmsByGenre: [],
+        genre: '',
+        reviews: [],
+        isReviewsLoading: false,
+        ReviewsLoadError: false,
+        similarFilms: [],
+        similarFilmsLoadError: false,
+        isSimilarFilmsLoading: false,
+        myList: [],
+        isMyListLoading: false,
+        MyListLoadError: false,
+        showedFilms: [],
+        shownFilmsCount: 0
+      },
+    }));
+    mockHistory.push(`/player/${film.id}`);
+
+    render(withStoreComponent);
+
+    expect(screen.getByText('Exit')).toBeInTheDocument();
+  });
+
+  it('should render the "NotFound" when user navigate to unknown route', () => {
+    const withHistoryComponent = withHistory(<App />, mockHistory);
+    const { withStoreComponent } = withStore(withHistoryComponent, makeFakeStore());
+    mockHistory.push('/*');
+
+    render(withStoreComponent);
+
+    expect(screen.getByText('404.')).toBeInTheDocument();
+    expect(screen.getByText('Go to main page')).toBeInTheDocument();
+  });
+
+  it('should render the "AddReview" when user navigate to ""/films/:id/review""', () => {
+    const withHistoryComponent = withHistory(<App />, mockHistory);
+    const { withStoreComponent } = withStore(
+      withHistoryComponent,
+      makeFakeStore({
+        [NameSpace.User]: {
+          authorizationStatus: AuthorizationStatus.Auth,
+          user: {
+            id:123,
+            email:'john@mail.ru',
+            token: 'asd213=',
+            avatarUrl:'photo.jpg',
+          },
+          signInError: false,
+        },
+        [NameSpace.Data]: {
+          heroFilm: null,
+          heroFilmLoadError: false,
+          isHeroFilmLoading: false,
+          allLoadedFilms: [],
+          isFilmsLoading: false,
+          filmsLoadError: false,
+          loadedFilm: film,
+          isFilmLoading: false,
+          filmLoadError: false,
+          allFilmsByGenre: [],
+          genre: '',
+          reviews: [],
+          isReviewsLoading: false,
+          ReviewsLoadError: false,
+          similarFilms: [],
+          similarFilmsLoadError: false,
+          isSimilarFilmsLoading: false,
+          myList: [],
+          isMyListLoading: false,
+          MyListLoadError: false,
+          showedFilms: [],
+          shownFilmsCount: 0
+        },
+      })
+    );
+    mockHistory.push(`/films/${film.id}/review`);
+
+    render(withStoreComponent);
+
+    screen.getAllByAltText(film.name).forEach((altText) => {
+      expect(altText).toBeInTheDocument();
+    });
+  });
 
 });
