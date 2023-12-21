@@ -27,7 +27,7 @@ export const createApi = (): AxiosInstance => {
     timeout: TIMEOUT,
   });
 
-  api.interceptors.response.use(
+  api.interceptors.request.use(
     (config:AxiosRequestConfig) => {
       const token = getToken();
       if (token && config.headers) {

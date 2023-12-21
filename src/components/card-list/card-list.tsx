@@ -1,4 +1,4 @@
-import Card from '../card/Card';
+import Card from '../card/card';
 import { useAppSelector } from '../../hooks';
 import { getShowedFilms } from '../../redux/store/data-process/data.selectors';
 

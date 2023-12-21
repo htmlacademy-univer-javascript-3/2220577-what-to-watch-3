@@ -1,6 +1,6 @@
 import { describe } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import Overview from './Overview.tsx';
+import Overview from './overview.tsx';
 
 describe('Component: Overview', () => {
   const director = 'john';

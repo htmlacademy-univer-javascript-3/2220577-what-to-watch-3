@@ -1,7 +1,7 @@
 import { describe } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { withHistory, withStore } from '../../utils/mock-component';
-import FormReview from './FormReview';
+import FormReview from './form-review';
 import userEvent from '@testing-library/user-event';
 
 describe('Component: FormReview', () => {

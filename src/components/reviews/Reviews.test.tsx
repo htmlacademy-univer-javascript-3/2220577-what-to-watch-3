@@ -1,7 +1,7 @@
 import { describe, it } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { reviews } from '../../utils/reviews.tsx';
-import Reviews from './Reviews.tsx';
+import Reviews from './reviews.tsx';
 
 describe('Component: Reviews', () => {
   let active = true;

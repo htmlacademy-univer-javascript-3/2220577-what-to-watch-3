@@ -2,13 +2,13 @@ import { describe, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { withHistory, withStore } from '../../utils/mock-component';
 import { AuthorizationStatus, NameSpace } from '../../consts';
-import { smallFilms } from '../../utils/films';
-import MyList from './MyList';
+import { SMALLFILMS } from '../../utils/films';
+import MyList from './my-list';
 
 
 describe('Page: MyList', () => {
   it('should render correct', () => {
-    const mockFilms = smallFilms;
+    const mockFilms = SMALLFILMS;
     const mockMyListLength = mockFilms.length;
 
     const withHistoryComponent = withHistory(<MyList />);

@@ -1,5 +1,5 @@
 import { describe } from 'vitest';
-import Spinner from './Spinner';
+import Spinner from './spinner';
 import {render, screen} from '@testing-library/react';
 
 

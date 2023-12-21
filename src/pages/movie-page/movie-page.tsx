@@ -1,19 +1,19 @@
-import CardList from '../../components/card-list/CardList';
-import Logo from '../../components/logo/Logo';
-import Profile from '../../components/profile/Profile';
-import Footer from '../../components/footer/Footer';
+import CardList from '../../components/card-list/card-list';
+import Logo from '../../components/logo/logo';
+import Profile from '../../components/profile/profile';
+import Footer from '../../components/footer/footer';
 import { Link, useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { fetchFilm, fetchReviews, fetchSimilarFilms } from '../../redux/store/api-actions';
 import { AuthorizationStatus } from '../../consts';
-import Tabs from '../../components/tabs/Tabs';
+import Tabs from '../../components/tabs/tabs';
 import { getFilm, getReviews } from '../../redux/store/data-process/data.selectors';
 import { getAuthStatus } from '../../redux/store/user-process/user.selectors';
 import { filterByGenre, showFilms } from '../../redux/store/data-process/data-process';
 import { convertRatingToText } from '../../utils/functions';
 import { Helmet } from 'react-helmet-async';
-import MyListButton from '../../components/my-list-button/MyListButton';
+import MyListButton from '../../components/my-list-button/my-list-button';
 
 export default function MoviePage() {
 

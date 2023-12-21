@@ -1,4 +1,4 @@
-import VideoPlayer from '../video-player/VideoPlayer';
+import VideoPlayer from '../video-player/video-player';
 
 type CardProps = {
   id: string;

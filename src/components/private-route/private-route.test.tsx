@@ -3,7 +3,7 @@ import { createMemoryHistory, MemoryHistory } from 'history';
 import { Route, Routes } from 'react-router-dom';
 import { render, screen } from '@testing-library/react';
 import { withHistory, withStore } from '../../utils/mock-component.tsx';
-import PrivateRoute from './PrivateRoute.tsx';
+import PrivateRoute from './private-route.tsx';
 import { AppRoute, NameSpace, AuthorizationStatus } from '../../consts.tsx';
 
 describe('Component: PrivateRoute', () => {

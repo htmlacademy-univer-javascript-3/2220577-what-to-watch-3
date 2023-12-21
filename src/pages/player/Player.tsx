@@ -4,7 +4,7 @@ import { getFilm } from '../../redux/store/data-process/data.selectors';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { fetchFilm } from '../../redux/store/api-actions';
-import Spinner from '../../components/spinner/Spinner';
+import Spinner from '../../components/spinner/spinner';
 
 export default function Player() {
   const params = useParams();
@@ -102,7 +102,7 @@ export default function Player() {
         </div>
 
         <div className="player__controls-row">
-          <button type="button" className="player__play" onClick={togglePlay}>
+          <button type="button" className="player__play" onClick={togglePlay} data-testid='play-button'>
             <svg viewBox="0 0 19 19" width={19} height={19}>
               {isPlaying ? <use xlinkHref="#pause" /> : <use xlinkHref="#play-s" />}
             </svg>

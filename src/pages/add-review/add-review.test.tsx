@@ -2,14 +2,12 @@ import { describe, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { withHistory, withStore } from '../../utils/mock-component';
 import { AuthorizationStatus, NameSpace } from '../../consts';
-import { film } from '../../utils/films';
-import AddReview from './AddReview';
-
+import { FILM } from '../../utils/films';
+import AddReview from './add-review';
 
 describe('Page: AddReview', () => {
-  // should navigate back when back button clicked
   it('should render correct', () => {
-    const mockFilm = film;
+    const mockFilm = FILM;
 
     const withHistoryComponent = withHistory(<AddReview />);
     const { withStoreComponent } = withStore(withHistoryComponent, {
@@ -20,7 +18,7 @@ describe('Page: AddReview', () => {
 
     render(withStoreComponent);
 
-    expect(screen.getByText(film.name)).toBeInTheDocument();
+    expect(screen.getByText(FILM.name)).toBeInTheDocument();
 
   });
 });

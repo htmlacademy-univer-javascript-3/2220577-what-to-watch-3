@@ -1,8 +1,8 @@
 import { Helmet } from 'react-helmet-async';
-import CardList from '../../components/card-list/CardList';
-import Footer from '../../components/footer/Footer';
-import Logo from '../../components/logo/Logo';
-import Profile from '../../components/profile/Profile';
+import CardList from '../../components/card-list/card-list';
+import Footer from '../../components/footer/footer';
+import Logo from '../../components/logo/logo';
+import Profile from '../../components/profile/profile';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { getMyFilms } from '../../redux/store/data-process/data.selectors';
 import { useEffect } from 'react';

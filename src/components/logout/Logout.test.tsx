@@ -1,6 +1,6 @@
 import { withHistory, withStore } from '../../utils/mock-component';
 import { render, screen } from '@testing-library/react';
-import Logout from './Logout';
+import Logout from './logout';
 
 describe('Component: Logout', () => {
   it('should render correctly', () => {

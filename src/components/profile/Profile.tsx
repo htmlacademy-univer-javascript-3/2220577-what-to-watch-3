@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 import { useAppSelector } from '../../hooks';
 import { AuthorizationStatus } from '../../consts';
-import Logout from '../logout/Logout';
-import Login from '../login/Login';
+import Logout from '../logout/logout';
+import Login from '../login/login';
 import { getAuthStatus, getUserData } from '../../redux/store/user-process/user.selectors';
 
 export default function Profile() {

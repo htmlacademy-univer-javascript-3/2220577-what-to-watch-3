@@ -1,6 +1,6 @@
 import { describe } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import Details from './Details';
+import Details from './details';
 import { convertTime } from '../../utils/functions';
 
 describe('Component: Details', () => {

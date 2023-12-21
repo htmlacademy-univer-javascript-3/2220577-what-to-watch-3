@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { FilmProps, ReviewProps } from '../../types/types';
-import Details from '../details/Details';
-import Overview from '../overview/Overview';
-import Reviews from '../reviews/Reviews';
+import Details from '../details/details';
+import Overview from '../overview/overview';
+import Reviews from '../reviews/reviews';
 
 type TabsProps = {
   film: FilmProps;

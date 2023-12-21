@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import CardList from '../card-list/CardList';
-import Genre from '../genre/Genre';
+import CardList from '../card-list/card-list';
+import Genre from '../genre/genre';
 import { genres } from '../../consts';
 
 export default function FilmsByGenres(){

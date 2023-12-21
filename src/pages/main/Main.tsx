@@ -1,19 +1,20 @@
-import HeroCard from '../../components/herocard/HeroCard';
-import Footer from '../../components/footer/Footer';
+import HeroCard from '../../components/hero-card/hero-card';
+import Footer from '../../components/footer/footer';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import ShowMore from '../../components/show-more/ShowMore';
+import ShowMore from '../../components/show-more/show-more';
 import { filterByGenre, showFilms } from '../../redux/store/data-process/data-process';
 import { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { getHeroFilm } from '../../redux/store/data-process/data.selectors';
-import FilmsByGenres from '../../components/films-by-genre/FilmsByGenres';
+import FilmsByGenres from '../../components/films-by-genre/films-by-genre';
+import { Genres } from '../../consts';
 
 export default function Main() {
   const dispatch = useAppDispatch();
   const heroFilm = useAppSelector(getHeroFilm);
 
   useEffect(() => {
-    dispatch(filterByGenre('All'));
+    dispatch(filterByGenre(Genres.All));
     dispatch(showFilms());
   }, [dispatch]);
 
