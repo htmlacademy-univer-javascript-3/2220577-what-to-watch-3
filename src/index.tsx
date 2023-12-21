@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './components/app/App';
+import App from './components/app/app';
 import { Provider } from 'react-redux';
 import {store} from './redux/store';
-import HistoryRouter from './components/history-router/HistoryRouter';
+import HistoryRouter from './components/history-router/history-router';
 import browserHistory from './browser-history';
 import { checkAuthAction, fetchFilms, fetchHeroFilm } from './redux/store/api-actions';
 import { ToastContainer } from 'react-toastify';

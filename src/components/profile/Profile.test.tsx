@@ -1,6 +1,6 @@
 import { describe } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import Profile from './Profile';
+import Profile from './profile';
 import { NameSpace, AuthorizationStatus } from '../../consts';
 import { withHistory, withStore } from '../../utils/mock-component';
 

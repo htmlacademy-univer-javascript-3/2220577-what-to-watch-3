@@ -1,11 +1,11 @@
 import { useNavigate } from 'react-router-dom';
-import Logo from '../../components/logo/Logo';
-import Profile from '../../components/profile/Profile';
-import FormReview from '../../components/form-review/FormReview';
+import Logo from '../../components/logo/logo';
+import Profile from '../../components/profile/profile';
+import FormReview from '../../components/form-review/form-review';
 import { useAppSelector } from '../../hooks';
 import { getFilm } from '../../redux/store/data-process/data.selectors';
 import { Helmet } from 'react-helmet-async';
-import Spinner from '../../components/spinner/Spinner';
+import Spinner from '../../components/spinner/spinner';
 
 export default function AddReview() {
   const navigate = useNavigate();

@@ -1,5 +1,5 @@
 import { ReviewProps } from '../../types/types';
-import Review from '../review/Review';
+import Review from '../review/review';
 
 type ReviewTabProps = {
   active: boolean;

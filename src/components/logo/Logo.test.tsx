@@ -1,6 +1,6 @@
 import { withHistory } from '../../utils/mock-component';
 import { render, screen } from '@testing-library/react';
-import Logo from './Logo';
+import Logo from './logo';
 
 describe('Component: Logo', () => {
   it('should render correctly', () => {

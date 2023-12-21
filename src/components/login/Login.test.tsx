@@ -1,6 +1,6 @@
 import { withHistory } from '../../utils/mock-component';
 import { render, screen } from '@testing-library/react';
-import Login from './Login';
+import Login from './login';
 
 describe('Component: Login', () => {
   it('should render correctly', () => {

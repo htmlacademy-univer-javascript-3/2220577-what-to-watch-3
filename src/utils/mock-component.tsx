@@ -1,6 +1,6 @@
 import { MemoryHistory, State, createMemoryHistory } from 'history';
 import { HelmetProvider } from 'react-helmet-async';
-import HistoryRouter from '../components/history-router/HistoryRouter';
+import HistoryRouter from '../components/history-router/history-router';
 import { MockStore, configureMockStore } from '@jedmao/redux-mock-store';
 import MockAdapter from 'axios-mock-adapter';
 import { Provider } from 'react-redux';

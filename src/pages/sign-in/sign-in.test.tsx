@@ -2,7 +2,7 @@ import { describe, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { withHistory, withStore } from '../../utils/mock-component';
 import { makeFakeStore } from '../../utils/mocks';
-import SignIn from './SignIn';
+import SignIn from './sign-in';
 import userEvent from '@testing-library/user-event';
 
 describe('Page: SignIn', () => {

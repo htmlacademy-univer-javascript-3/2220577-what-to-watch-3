@@ -1,11 +1,11 @@
 import { Link } from 'react-router-dom';
-import Logo from '../logo/Logo';
-import Profile from '../profile/Profile';
+import Logo from '../logo/logo';
+import Profile from '../profile/profile';
 import { HeroProps } from '../../types/types';
 import { useAppSelector } from '../../hooks';
 import { getAuthStatus } from '../../redux/store/user-process/user.selectors';
 import { AuthorizationStatus } from '../../consts';
-import MyListButton from '../my-list-button/MyListButton';
+import MyListButton from '../my-list-button/my-list-button';
 
 type HeroCardProps = {
   heroFilm: HeroProps;

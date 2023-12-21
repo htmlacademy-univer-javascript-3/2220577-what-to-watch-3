@@ -1,6 +1,6 @@
 import { describe, it } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import Review from './Review.tsx';
+import Review from './review.tsx';
 import { reviews } from '../../utils/reviews.tsx';
 
 describe('Component: Review', () => {

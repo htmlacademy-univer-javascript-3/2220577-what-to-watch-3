@@ -1,12 +1,11 @@
 import { describe } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { NameSpace } from '../../consts.tsx';
-import { smallFilms } from '../../utils/films.ts';
-import Genre from './Genre.tsx';
+import { SMALLFILMS } from '../../utils/films.ts';
+import Genre from './genre.tsx';
 import { withHistory, withStore } from '../../utils/mock-component.tsx';
 
 describe('Component: Genre', () => {
-  // when clicked on genre, should change classname to active
   it('should render correctly', () => {
     const expectedName = 'All';
 
@@ -17,7 +16,7 @@ describe('Component: Genre', () => {
       />
     );
     const { withStoreComponent } = withStore(preparedComponent, {
-      [NameSpace.Data]: { showedFilms: smallFilms },
+      [NameSpace.Data]: { showedFilms: SMALLFILMS },
     });
 
     render(withStoreComponent);

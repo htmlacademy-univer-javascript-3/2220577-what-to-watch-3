@@ -1,22 +1,23 @@
-import Main from '../../pages/main/Main';
 import {
   Routes,
   Route,
 } from 'react-router-dom';
-import SignIn from '../../pages/signIn/SignIn';
-import MyList from '../../pages/myList/MyList';
-import MoviePage from '../../pages/film/MoviePage';
-import AddReview from '../../pages/addReview/AddReview';
-import Player from '../../pages/player/Player';
-import NotFound from '../not-found/NotFound';
+
+import NotFound from '../not-found/not-found';
 import {AppRoute, AuthorizationStatus} from '../../consts';
-import PrivateRoute from '../private-route/PrivateRoute';
+import PrivateRoute from '../private-route/private-route';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { getAuthStatus } from '../../redux/store/user-process/user.selectors';
 import { getFilmsLoadStatus } from '../../redux/store/data-process/data.selectors';
 import { HelmetProvider } from 'react-helmet-async';
-import Spinner from '../spinner/Spinner';
+import Spinner from '../spinner/spinner';
 import { fetchMyList } from '../../redux/store/api-actions';
+import AddReview from '../../pages/add-review/add-review';
+import MoviePage from '../../pages/movie-page/movie-page';
+import MyList from '../../pages/my-list/my-list';
+import SignIn from '../../pages/sign-in/sign-in';
+import Main from '../../pages/main/main';
+import Player from '../../pages/player/player';
 
 export default function App() {
   const authorizationStatus = useAppSelector(getAuthStatus);
